@@ -1,9 +1,10 @@
 # Define UI for application
 shinyUI(dashboardPage(
-  dashboardHeader(title = "Opioid Prescriptions"),
-  dashboardSidebar(tags$blockquote("This is a dashboard on opioids."),
+  dashboardHeader(title = "Opioid Dashboard"),
+  dashboardSidebar(tags$blockquote("Welcome to the Opioids Dashboard."),
                    sidebarMenu(
-                     menuItem("Dashboard", tabName = "dashboard", icon = icon("dashboard"))
+                     menuItem("Overall Dashboard", tabName = "dashboard", icon = icon("dashboard")),
+                     menuItem("State Dashboard", tabName = "stateDash", icon = icon("dashboard"))
                    )),
   dashboardBody(
     tabItems(
@@ -13,15 +14,39 @@ shinyUI(dashboardPage(
                   title = "Specialties", status = "primary", solidHeader = TRUE,
                   "Select a specialty to see opioids prescribed per year", width = 5,
                   selectInput("specialty",
-                              label = "Specialty",
+                              label = NULL,
                               choices = specialties,
-                              selected = 2016)
+                              selected = NULL)
                 ),
                 box(
-                  title = "Prescription Rates by Sepcialties over Time", status = "primary",
+                  title = "Prescription Rates per Specialty over Time", status = "primary",
                   solidHeader = TRUE, width = 7, plotOutput("specsLinePlot", height = 300)
                 )
+              )),
+      tabItem(tabName = "stateDash",
+              fluidRow(
+                box(
+                  title = "Year", status = "primary", solidHeader = TRUE,
+                  "Select a year to see opioids prescribed", width = 5,
+                  selectInput("year",
+                              label = NULL,
+                              choices = years,
+                              selected = 2016)),
+                box(
+                  title = "States", status = "primary", solidHeader = TRUE,
+                  "Select a state to see counts by state", width = 5,
+                  selectInput("state",
+                              label = NULL,
+                              choices = states,
+                              selected = "Tennessee"))
+                ),
+              fluidRow(
+                valueBoxOutput("providers"),
+                valueBoxOutput("rate"),
+                valueBoxOutput("opioid_claims"),
+                valueBoxOutput("total_claims")
+              )
               ))
     )
   )
-))
+)
