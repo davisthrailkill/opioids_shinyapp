@@ -10,19 +10,29 @@ shinyUI(dashboardPage(
                    selectInput("state",
                                label = "State",
                                choices = states,
-                               selected = "TN"),
+                               selected = "TN",
+                               selectize = TRUE),
                    selectInput("specialty",
                                label = "Specialty",
                                choices = specialties,
-                               selected = "Orthopedic Surgery")),
+                               selected = "Orthopedic Surgery",
+                               selectize = TRUE)),
   dashboardBody(
     h2("Opioid Metrics"),
     fluidRow(
-      valueBoxOutput("providers"),
-      valueBoxOutput("beneficiaries"),
-      valueBoxOutput("rate"),
-      valueBoxOutput("opioid_claims"),
-      valueBoxOutput("total_claims"))
-                
+      box(title = "Opioid Prescription Rate", status = "primary",
+                 plotOutput("map", height = 162), width = 4),
+      column(width = 8,
+             valueBoxOutput("providers"),
+             valueBoxOutput("beneficiaries"),
+             valueBoxOutput("30_day_fills"),
+             valueBoxOutput("total_claims"),
+             valueBoxOutput("opioid_claims"),
+             valueBoxOutput("rate"))
+    ),
+    fluidRow(
+      box(title = "Opioid Prescriber List", status = "primary",
+          dataTableOutput("opioid_providers_table"), width = 12)
+    )
   ))
 )

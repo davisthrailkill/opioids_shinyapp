@@ -1,0 +1,12 @@
+name: opioids_shinyapp
+title: opioids_shinyapp
+username:
+account: davisthrailkill
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 617632
+bundleId: 1765723
+url: https://davisthrailkill.shinyapps.io/opioids_shinyapp/
+when: 1544903622.71575
+asMultiple: FALSE
+asStatic: FALSE
