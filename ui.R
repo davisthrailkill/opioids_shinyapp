@@ -1,8 +1,7 @@
 # Define UI for application
 shinyUI(dashboardPage(
-  dashboardHeader(title = "Opioid Dashboard"),
-  dashboardSidebar(tags$blockquote("Welcome to the Opioids Dashboard. 
-                                   Select inputs below to filter dashboard."),
+  dashboardHeader(title = "Opioids Dashboard"),
+  dashboardSidebar(tags$blockquote("Select inputs below to filter dashboard."),
                    selectInput("year",
                                label = "Year",
                                choices = years,
